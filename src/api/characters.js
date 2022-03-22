@@ -1,10 +1,10 @@
-const URL = "https://rickandmortyapi.com/api/character/"
+const URL = "http://ddragon.leagueoflegends.com/cdn/12.5.1/"
 
 export async function getCharactersApi(){
     try {
-        const request = await fetch(`${URL}?page=17`);
+        const request = await fetch(`${URL}data/en_US/champion.json`);
         const response = await request.json();
-        return response.results;
+        return response.data;
     } catch (err) {
         throw Error(err);
     }
@@ -12,20 +12,10 @@ export async function getCharactersApi(){
 
 export async function getCharacterByIdApi(id){
     try {
-        const request = await fetch(`${URL}${id}`);
+        const request = await fetch(`${URL}data/en_US/champion/${id}.json`);
         const response = await request.json();
-        return response;
+        return response.data;
     } catch (err) {
-        throw Error(err);
-    }
-}
-
-export async function getEpisodeName(url){
-    try{
-        const request = await fetch(url);
-        const response = await request.json();
-        return response.name;
-    }catch (err){
         throw Error(err);
     }
 }
