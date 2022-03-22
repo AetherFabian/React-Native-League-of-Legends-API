@@ -6,60 +6,44 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import React, { useState, useEffect } from "react";
-import { getEpisodeName } from '../api/characters';
+import { getCharacterByIdApi } from '../api/characters';
 
-export default function Character({ character, navigation }) {
-    const [episode, setEpisode] = useState();
+export default function Character({ champion, navigation }) {
+    const [champion, setChampion] = useState();
+    const [image, setImage] = useState({});
 
-    const fetchEpisodeData = async () =>{
-        const request = await getEpisodeName(character.episode[0]);
-        setEpisode(request);
+    const fetchCharacterById = async () =>{
+        const request = await getCharacterByIdApi(champion["id"]);
+        const imageAPI = 'http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/' + id + '.png';
+        setImage(imageAPI);
+        setChampion(request);
     };
 
     useEffect(() => {
-        fetchEpisodeData();
+        fetchCharacterById();
     });
-
-    return (
-        <TouchableWithoutFeedback 
+            return (
+        <TouchableWithoutFeedback
             onPress={()=>{
-                navigation.navigate("CharacterDetails", {character})
+                navigation.navigate("CharacterDetails", {champion["id"]});
             }}
         >
             <View style = {styles.character}>
                 <View style = {styles.spacing}>
-                    <Image source = {{ uri: character.image}} style={styles.image}/>
+                    <Image source = {{ uri: image}} style={styles.image}/>
                     <View style = {styles.character__info}>
-                        <Text style={styles.character__name}> {character.name} </Text>
+                        <Text style={styles.character__name}> {character["id"]} </Text>
                         <View style= {styles.character__status}>
                             <View style={styles.status_indicator__container}>
-                                <View 
-                                    style={[
-                                        styles.character__status_indicator, 
-                                        character.status === "Alive"
-                                            ? styles.character__alive
-                                            : styles.character__dead
-                                    ]}
-                                />
-                            </View>
-                            <Text 
-                                style={styles.character__status_text}
-                            >{`${character.status} - ${character.species}`}</Text>
                         </View>
                         <View style={styles.character__data}>
                             <Text style = {styles.Data__title}>
-                                Last Known Location:
+                                Title:
                             </Text>
                             <Text style = {styles.Data__location}>
-                                {character.location.name}
+                                {character["title"]}
                             </Text>
-                            <Text style = {styles.Data__title}>
-                                First seen in:
-                            </Text>
-                            <Text style = {styles.Data__location}>
-                                {episode}
-                            </Text>
-                        </View>                            
+                        </View>
                     </View>
                 </View>
             </View>

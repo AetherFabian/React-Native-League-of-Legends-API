@@ -2,15 +2,15 @@ import { FlatList, StyleSheet,} from "react-native";
 import React from 'react'
 import Character from "./Character"
 
-export default function CharacterList({ characters, navigation }) {
+export default function CharacterList({ champions, navigation }) {
     return(
         <FlatList
-            data = {characters}
+            data = {champions}
             numColumns = {1}
             showsVerticalScrollIndicator = {false}
             contentContainerStyle={styles.flatListContentContainer}
-            keyExtractor={(character)=>String(character.id)}
-            renderItem={({item}) => <Character character = {item} navigation={navigation}/>}
+            keyExtractor={(champion)=>String(champion["id"])}
+            renderItem={({item}) => <Character champion = {item} navigation={navigation}/>}
         />
     )
 }
