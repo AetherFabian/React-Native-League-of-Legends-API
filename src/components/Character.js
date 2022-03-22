@@ -9,11 +9,12 @@ import React, { useState, useEffect } from "react";
 import { getCharacterByIdApi } from '../api/characters';
 
 export default function Character({ champion, navigation }) {
+    const { id } = UseParams();
     const [champion, setChampion] = useState();
     const [image, setImage] = useState({});
 
     const fetchCharacterById = async () =>{
-        const request = await getCharacterByIdApi(champion["id"]);
+        const request = await getCharacterByIdApi(id);
         const imageAPI = 'http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/' + id + '.png';
         setImage(imageAPI);
         setChampion(request);
@@ -25,7 +26,7 @@ export default function Character({ champion, navigation }) {
             return (
         <TouchableWithoutFeedback
             onPress={()=>{
-                navigation.navigate("CharacterDetails", {champion["id"]});
+                navigation.navigate("CharacterDetails", champion["id"]);
             }}
         >
             <View style = {styles.character}>
