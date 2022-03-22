@@ -4,7 +4,7 @@ import { getCharactersApi } from '../api/characters';
 import CharacterList from "../components/CharacterList";
 
 export default function CharactersScreen({navigation}){
-    const [characters, setCharacters] = useState([]);
+    const [champions, setCharacters] = useState([]);
     const [filterData, setFilterData] = useState("");
     const [loading, setLoading] = useState(true);
 
@@ -19,10 +19,11 @@ export default function CharactersScreen({navigation}){
         });
         fetchCharacter();
     });
-    
+
     const fetchCharacter = async () =>{
         const response = await getCharactersApi();
-        setCharacters(response);
+        const champion = Object.values(response.data);
+        setCharacters(champion["id"]);
         setLoading(false);
     };
 
@@ -31,22 +32,22 @@ export default function CharactersScreen({navigation}){
     };
 
     const filteredCharacters = useMemo(() =>
-        characters.filter((character)=>{
-            return character.name.toLowerCase().includes(filterData.toLowerCase());
-        }), 
-        [characters, filterData]
+        champions.filter((champion)=>{
+            return character["id"].toLowerCase().includes(filterData.toLowerCase());
+        }),
+        [champions, filterData]
     );
-    
-    return ( 
+
+    return (
         <SafeAreaView style={styles.container}>
             {loading ?
-                <SafeAreaView style={[styles.container__indicator, styles.horizontal]}> 
+                <SafeAreaView style={[styles.container__indicator, styles.horizontal]}>
                     <ActivityIndicator size={"large"} color={"#54DB33"}/>
                 </SafeAreaView>
                 :
                 <SafeAreaView>
                     <CharacterList
-                        characters={filteredCharacters}
+                        champions={filteredCharacters}
                         navigation={navigation}
                     />
                 </SafeAreaView>
