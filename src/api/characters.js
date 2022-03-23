@@ -1,10 +1,10 @@
-const URL = "https://rickandmortyapi.com/api/character/"
+const URL = "https://smashbros-unofficial-api.vercel.app/api/v1/ultimate/characters"
 
 export async function getCharactersApi(){
     try {
-        const request = await fetch(`${URL}?page=17`);
+        const request = await fetch(`${URL}`);
         const response = await request.json();
-        return response.results;
+        return response;
     } catch (err) {
         throw Error(err);
     }

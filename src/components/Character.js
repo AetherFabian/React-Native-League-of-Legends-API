@@ -6,18 +6,13 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import React, { useState, useEffect } from "react";
-import { getEpisodeName } from '../api/characters';
 
 export default function Character({ character, navigation }) {
-    const [episode, setEpisode] = useState();
-
-    const fetchEpisodeData = async () =>{
-        const request = await getEpisodeName(character.episode[0]);
-        setEpisode(request);
-    };
+    const [image, setImage] = useState();
 
     useEffect(() => {
-        fetchEpisodeData();
+        const image = character.images["icon"];
+        setImage(image)
     });
 
     return (
@@ -28,36 +23,21 @@ export default function Character({ character, navigation }) {
         >
             <View style = {styles.character}>
                 <View style = {styles.spacing}>
-                    <Image source = {{ uri: character.image}} style={styles.image}/>
+                <Image source = {{ uri: image}} style={styles.image}/>
                     <View style = {styles.character__info}>
                         <Text style={styles.character__name}> {character.name} </Text>
-                        <View style= {styles.character__status}>
-                            <View style={styles.status_indicator__container}>
-                                <View 
-                                    style={[
-                                        styles.character__status_indicator, 
-                                        character.status === "Alive"
-                                            ? styles.character__alive
-                                            : styles.character__dead
-                                    ]}
-                                />
-                            </View>
-                            <Text 
-                                style={styles.character__status_text}
-                            >{`${character.status} - ${character.species}`}</Text>
-                        </View>
                         <View style={styles.character__data}>
                             <Text style = {styles.Data__title}>
-                                Last Known Location:
+                                First Appariation:
                             </Text>
                             <Text style = {styles.Data__location}>
-                                {character.location.name}
+                                {character.alsoAppearsIn[0]}
                             </Text>
                             <Text style = {styles.Data__title}>
-                                First seen in:
+                                Videogames Series:
                             </Text>
                             <Text style = {styles.Data__location}>
-                                {episode}
+                                {character.series["name"]}
                             </Text>
                         </View>                            
                     </View>

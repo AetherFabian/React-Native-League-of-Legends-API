@@ -6,34 +6,22 @@ export default function CharacterDetails(props){
     return(
         <View style={styles.container}>
             <View style={styles.content}>
-                <Image style={styles.image} source={{uri: character.image}}/>
+                <Image style={styles.image} source={{uri: character.images["portrait"]}}/>
                 <View style={styles.property}>
                     <Text style={styles.property_name}>Name: </Text>
                     <Text style={styles.property_value}>{character.name}</Text>
                 </View>
                 <View style={styles.property}>
                     <Text style={styles.property_name}>Status: </Text>
-                    <Text style={styles.property_value}>{character.status}</Text>
+                    <Text style={styles.property_value}>{character.order}</Text>
                 </View>
                 <View style={styles.property}>
                     <Text style={styles.property_name}>Species: </Text>
-                    <Text style={styles.property_value}>{character.species}</Text>
-                </View>
-                <View style={styles.property}>
-                    <Text style={styles.property_name}>Type: </Text>
-                    <Text style={styles.property_value}>{character.type || "NA"}</Text>
+                    <Text style={styles.property_value}>{character.series["name"]}</Text>
                 </View>
                 <View style={styles.property}>
                     <Text style={styles.property_name}>Gender: </Text>
-                    <Text style={styles.property_value}>{character.gender}</Text>
-                </View>
-                <View style={styles.property}>
-                    <Text style={styles.property_name}>Origin: </Text>
-                    <Text style={styles.property_value}>{character.origin.name}</Text>
-                </View>
-                <View style={styles.property}>
-                    <Text style={styles.property_name}>Location: </Text>
-                    <Text style={styles.property_value}>{character.location.name}</Text>
+                    <Text style={styles.property_value}>{character.alsoAppearsIn}</Text>
                 </View>
             </View>
         </View>

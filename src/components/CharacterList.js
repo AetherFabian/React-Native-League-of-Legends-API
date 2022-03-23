@@ -9,7 +9,7 @@ export default function CharacterList({ characters, navigation }) {
             numColumns = {1}
             showsVerticalScrollIndicator = {false}
             contentContainerStyle={styles.flatListContentContainer}
-            keyExtractor={(character)=>String(character.id)}
+            keyExtractor={(character)=>String(character.name)}
             renderItem={({item}) => <Character character = {item} navigation={navigation}/>}
         />
     )

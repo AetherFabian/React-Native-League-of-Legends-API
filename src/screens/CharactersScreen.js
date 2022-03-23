@@ -16,9 +16,10 @@ export default function CharactersScreen({navigation}){
                     handleSearch(event.nativeEvent.text);
                 },
             },
+            
         });
         fetchCharacter();
-    });
+},);
     
     const fetchCharacter = async () =>{
         const response = await getCharactersApi();
