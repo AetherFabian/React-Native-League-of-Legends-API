@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, Image, SafeAreaView } from "react-native";
 
 const image_url = 
-    "https://www.mubis.es/media/articles/20247/219559/cameo-editara-la-serie-rick-and-morty-en-blu-ray-l_cover.jpg";
+    "https://i.pinimg.com/originals/78/21/88/7821886c4150bea947e50f9b0ba4c2f8.jpg";
 
 export default function SplashScreen({ navigation }){
     useEffect(() => {

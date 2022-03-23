@@ -6,6 +6,7 @@ import {
     TouchableWithoutFeedback,
 } from 'react-native';
 import React, { useState, useEffect } from "react";
+import { borderRightColor } from 'react-native/Libraries/Components/View/ReactNativeStyleAttributes';
 
 export default function Character({ character, navigation }) {
     const [image, setImage] = useState();
@@ -21,6 +22,7 @@ export default function Character({ character, navigation }) {
                 navigation.navigate("CharacterDetails", {character})
             }}
         >
+
             <View style = {styles.character}>
                 <View style = {styles.spacing}>
                 <Image source = {{ uri: image}} style={styles.image}/>
@@ -28,7 +30,7 @@ export default function Character({ character, navigation }) {
                         <Text style={styles.character__name}> {character.name} </Text>
                         <View style={styles.character__data}>
                             <Text style = {styles.Data__title}>
-                                First Appariation:
+                                First Apparition:
                             </Text>
                             <Text style = {styles.Data__location}>
                                 {character.alsoAppearsIn[0]}
@@ -43,7 +45,9 @@ export default function Character({ character, navigation }) {
                     </View>
                 </View>
             </View>
+    
         </TouchableWithoutFeedback>
+        
     );
 }
 
@@ -66,6 +70,7 @@ const styles = StyleSheet.create({
         height: 180,
         borderTopLeftRadius: 10,
         borderBottomLeftRadius: 10,
+        backgroundColor: "#AD1A1A"
     },
     character__info:{
         flex:1,
@@ -74,9 +79,13 @@ const styles = StyleSheet.create({
         alignContent: "flex-start",
         paddingLeft: 10,
         height: "100%",
-        backgroundColor: "#133b80",
-        borderTopRightRadius: 10,
-        borderBottomRightRadius: 10,
+        backgroundColor: "black",
+        borderTopRightRadius: 5,
+        borderBottomRightRadius: 5,
+        borderWidth: 5,
+        borderColor: "#AD1A1A"
+        
+        
     },
     character__name:{
         height: 50,
