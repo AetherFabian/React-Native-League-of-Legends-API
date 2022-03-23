@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text, Image } from "react-native"
+import { SvgUri } from 'react-native-svg';
 import React from "react"
 
 export default function CharacterDetails(props){
@@ -12,16 +13,17 @@ export default function CharacterDetails(props){
                     <Text style={styles.property_value}>{character.name}</Text>
                 </View>
                 <View style={styles.property}>
-                    <Text style={styles.property_name}>Status: </Text>
+                    <Text style={styles.property_name}>Order: </Text>
                     <Text style={styles.property_value}>{character.order}</Text>
                 </View>
                 <View style={styles.property}>
-                    <Text style={styles.property_name}>Species: </Text>
+                    <Text style={styles.property_name}>Videogame Series: </Text>
                     <Text style={styles.property_value}>{character.series["name"]}</Text>
                 </View>
+                <SvgUri  uri = {character.series["icon"]}/>
                 <View style={styles.property}>
-                    <Text style={styles.property_name}>Gender: </Text>
-                    <Text style={styles.property_value}>{character.alsoAppearsIn}</Text>
+                    <Text style={styles.property_name}>Appears on: </Text>
+                    <Text style={styles.property_value}>{character.alsoAppearsIn[0]}, {character.alsoAppearsIn[1]}, {character.alsoAppearsIn[2]}, {character.alsoAppearsIn[3]}, Ultimate</Text>
                 </View>
             </View>
         </View>
